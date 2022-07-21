@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National fuel pass</title>
+    <script src="/qrcodejs/qrcode.js"></script>
+    <style>
+        .card{
+            width: 2.5in;
+            height: 3.5in;
+            border: 2px solid black;
+            border-radius: 5px;
+            margin: auto;
+        }
+        .logos{
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .logos img{
+            width: 50px;
+        }
+        h1{
+            font-size: 25px;
+            text-align: center;
+            margin: 5px auto;
+        }
+        input{
+            width: 90%;
+            margin: 2px auto;
+            display: block;
+            border: 0px;
+            text-align: center;
+        }
+        #qr img{
+            width: 80%;
+            margin: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="logos">
+            <img src="/img/ceypetco.jpg" alt="">
+            <img src="/img/ioc.jpg" alt="">
+        </div>
+        <h1>
+            National Fuel Pass
+        </h1>
+        <input type="text" id="cr_number" placeholder="Registration number" onkeyup="makeQR()">
+        <div id="qr"></div>
+        <input type="text" id="code" placeholder="Code" onkeyup="makeQR()">
+        
+    </div>
+    <script>
+        var qr =new QRCode("qr",{
+            correctLevel : QRCode.CorrectLevel.M
+        });
+        function makeQR() {
+            let reg = document.getElementById("cr_number").value;
+            let code = document.getElementById("code").value;
+            let qr_text = reg+" | "+code;
+            qr.makeCode(qr_text);
+        }
+        makeQR();
+    </script>
+</body>
+</html>
